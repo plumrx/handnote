@@ -2,9 +2,9 @@
   <div class="c-calendar-month">
     <nav class="year-month-select-wrap">
       <div class="select-wrap year-select">
-        <span class="pre">{{ current.year() - 1 }}</span>
+        <span class="pre" @click="yearDec">{{ current.year() - 1 }}</span>
         <span class="current">{{ current.year() }}</span>
-        <span class="next">{{ current.year() + 1 }}</span>
+        <span class="next" @click="yearInc">{{ current.year() + 1 }}</span>
       </div>
       <div class="select-wrap">年</div>
       <div class="select-wrap month-select">
@@ -30,6 +30,7 @@ import moment from 'moment'
 import { mapState, mapGetters } from 'vuex'
 import Day from '@/core/Day'
 import CalendarMonthItem from './CalendarMonthItem'
+import { types } from '@/store'
 
 export default {
   name: 'CalendarMonth',
@@ -56,6 +57,24 @@ export default {
     nextDays () {
       const nextDays = 6 - moment(this.yearMonth).day()
       return new Array(nextDays).fill(null).map(() => new Day({ type: 'next' }))
+    },
+  },
+  methods: {
+    monthInc () {
+      const date = moment(this.current).add(1, 'months')
+      this.$store.commit(types.UPDATE_CURRENT, date)
+    },
+    monthDec () {
+      const date = moment(this.current).subtract(1, 'months')
+      this.$store.commit(types.UPDATE_CURRENT, date)
+    },
+    yearInc () {
+      const date = moment(this.current).add(1, 'years')
+      this.$store.commit(types.UPDATE_CURRENT, date)
+    },
+    yearDec () {
+      const date = moment(this.current).subtract(1, 'years')
+      this.$store.commit(types.UPDATE_CURRENT, date)
     },
   },
 }
