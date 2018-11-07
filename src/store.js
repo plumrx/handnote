@@ -1,18 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import moment from 'moment'
+import localStore from '@/utils/localStore'
 
 Vue.use(Vuex)
 
 export const types = {
   UPDATE_CURRENT: 'UPDATE_CURRENT',
   UPDATE_SELECTED: 'UPDATE_SELECTED',
+  SAVE_THEME_COLOR: 'SAVE_THEME_COLOR',
 }
 
 export default new Vuex.Store({
   state: {
     current: moment(),
     selected: moment(),
+    color: localStore.getData('themeColor') || '0', // 主题色 HUE 角度
   },
   getters: {
     /**
@@ -45,6 +48,11 @@ export default new Vuex.Store({
      */
     [types.UPDATE_SELECTED] (state, momentObject) {
       state.selected = moment(momentObject)
+    },
+
+    [types.SAVE_THEME_COLOR] (state, color) {
+      state.color = color
+      localStore.setData('themeColor', color)
     },
 
   },

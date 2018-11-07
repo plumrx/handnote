@@ -4,13 +4,21 @@
   </div>
 </template>
 
-<style lang="stylus">
+<script>
+import { mapState } from 'vuex'
+import Utils from '@/utils'
 
-#app
-  font-family 'Avenir', Helvetica, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-
-</style>
+export default {
+  computed: {
+    ...mapState(['color']),
+  },
+  watch: {
+    color (val) {
+      Utils.setThemeColor(val)
+    },
+  },
+  created () {
+    Utils.setThemeColor(this.color)
+  },
+}
+</script>
