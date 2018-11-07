@@ -10,7 +10,7 @@ class Day {
    * @memberof Day
    */
   constructor (args = {}) {
-    this.moment = moment(args.moment) // 当天的 Moment 对象
+    this.moment = args.moment && moment(args.moment) // 当天的 Moment 对象
     this.type = args.type || 'current' // current: 本月, pre: 上个月, next: 下个月
     this.display = args.display || '' // 当月的日期
   }

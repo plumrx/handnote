@@ -6,11 +6,13 @@ Vue.use(Vuex)
 
 export const types = {
   UPDATE_CURRENT: 'UPDATE_CURRENT',
+  UPDATE_SELECTED: 'UPDATE_SELECTED',
 }
 
 export default new Vuex.Store({
   state: {
-    current: moment(), // timestamp
+    current: moment(),
+    selected: moment(),
   },
   getters: {
     /**
@@ -24,7 +26,7 @@ export default new Vuex.Store({
   },
   mutations: {
     /**
-     * 更新当前操作的时间
+     * 更新当前视图的时间
      *
      * @author mutoe <mutoe@foxmail.com>
      * @param {*} state
@@ -33,6 +35,18 @@ export default new Vuex.Store({
     [types.UPDATE_CURRENT] (state, momentObject) {
       state.current = moment(momentObject)
     },
+
+    /**
+     * 更新当前选择的时间
+     *
+     * @author mutoe <mutoe@foxmail.com>
+     * @param {*} state
+     * @param {momnetMoment} momentObject
+     */
+    [types.UPDATE_SELECTED] (state, momentObject) {
+      state.selected = moment(momentObject)
+    },
+
   },
   actions: {
 

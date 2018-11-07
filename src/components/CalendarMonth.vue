@@ -8,9 +8,9 @@
       </div>
       <div class="select-wrap">年</div>
       <div class="select-wrap month-select">
-        <span class="pre" @click="monthDec">{{ current.month() - 1 }}</span>
-        <span class="current">{{ current.month() }}</span>
-        <span class="next" @click="monthInc">{{ current.month() + 1 }}</span>
+        <span class="pre" @click="monthDec">{{ preMonthText }}</span>
+        <span class="current">{{ current.month() + 1 }}</span>
+        <span class="next" @click="monthInc">{{ nextMonthText }}</span>
       </div>
       <div class="select-wrap">月</div>
     </nav>
@@ -29,15 +29,15 @@
 import moment from 'moment'
 import { mapState, mapGetters } from 'vuex'
 import Day from '@/core/Day'
-import CalendarMonthItem from './CalendarMonthItem'
 import { types } from '@/store'
+import CalendarMonthItem from './CalendarMonthItem'
 
 export default {
   name: 'CalendarMonth',
   components: { CalendarMonthItem },
   data () {
     return {
-      weeks: ['一', '二', '三', '四', '五', '六', '日'],
+      weeks: ['日', '一', '二', '三', '四', '五', '六'],
     }
   },
   computed: {
@@ -48,7 +48,11 @@ export default {
     },
     currentDays () {
       const daysInMonth = moment(this.current).daysInMonth()
-      return new Array(daysInMonth).fill(null).map((value, index) => new Day({ display: index + 1 }))
+      return new Array(daysInMonth).fill(null).map((value, index) => new Day({
+        // type: 'current',
+        display: index + 1,
+        moment: moment(this.current).date(1).add(index, 'days'),
+      }))
     },
     preDays () {
       const preDays = moment(this.yearMonth).day()
@@ -57,6 +61,14 @@ export default {
     nextDays () {
       const nextDays = 6 - moment(this.yearMonth).day()
       return new Array(nextDays).fill(null).map(() => new Day({ type: 'next' }))
+    },
+    preMonthText () {
+      const currentMonth = this.current.month()
+      return currentMonth === 0 ? 12 : currentMonth
+    },
+    nextMonthText () {
+      const nextMonth = this.current.month() + 2
+      return nextMonth > 12 ? 1 : nextMonth
     },
   },
   methods: {
