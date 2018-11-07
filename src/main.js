@@ -7,6 +7,9 @@ import './registerServiceWorker'
 // plugins
 import './plugins/element'
 
+// style
+import './stylus/index.styl'
+
 Vue.config.productionTip = false
 
 new Vue({

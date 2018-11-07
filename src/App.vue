@@ -5,9 +5,6 @@
 </template>
 
 <style lang="stylus">
-html, body
-  padding 0
-  margin 0
 
 #app
   font-family 'Avenir', Helvetica, sans-serif
