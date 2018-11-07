@@ -1,6 +1,7 @@
 <template>
   <nav class="c-footer-nav">
     <button @click="randomColor">换个心情</button>
+    <button @click="clearAppCache">清除缓存</button>
   </nav>
 </template>
 
@@ -13,6 +14,9 @@ export default {
     randomColor () {
       const colorAngle = (Math.random() * 360) << 0
       this.$store.commit(types.SAVE_THEME_COLOR, colorAngle)
+    },
+    clearAppCache () {
+      window.applicationCache.update()
     },
   },
 }
