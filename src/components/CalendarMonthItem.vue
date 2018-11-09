@@ -1,13 +1,13 @@
 <template>
   <div class="c-calendar-month-item" @click="setSelectedDay">
-    <div :class="{selected: isSelectedDay, today: isToday}" class="item">
+    <div :class="dayClasses" class="item">
       {{ day.display }}
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import moment from 'moment'
 import { types } from '@/stores'
 
@@ -18,11 +18,20 @@ export default {
   },
   computed: {
     ...mapState(['current', 'selected']),
+    ...mapState('menstrual', { showMenstrual: 'enable' }),
+    ...mapGetters('menstrual', ['isMenstrualDay', 'daysInCycle']),
     isSelectedDay () {
       return this.day.moment && this.selected.isSame(this.day.moment, 'day')
     },
     isToday () {
       return this.day.moment && moment().isSame(this.day.moment, 'day')
+    },
+    dayClasses () {
+      return {
+        selected: this.isSelectedDay,
+        today: this.isToday,
+        menstrual: this.showMenstrual && this.isMenstrualDay(this.day.moment),
+      }
     },
   },
   methods: {
@@ -43,6 +52,7 @@ export default {
   padding 4px
 
   .item
+    position relative
     display flex
     align-items center
     justify-content center
@@ -55,5 +65,18 @@ export default {
 
     &.selected
       border-color $primary
+
+    &.menstrual::after
+      content ''
+      position absolute
+      top 50%
+      left 50%
+      display block
+      width 26px
+      height 12px
+      margin-left -(@width / 2)
+      border-bottom 2px solid lighten(red, 80%)
+      border-radius (@height / 4)
+      z-index -1
 
 </style>
