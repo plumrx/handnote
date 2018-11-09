@@ -1,0 +1,30 @@
+
+branches:
+  only:
+    - master
+
+language: node_js
+node_js:
+  - lts/*
+  - stable
+
+cache: yarn
+
+install:
+  - yarn
+
+script:
+  - yarn lint --no-fix
+
+before_deploy:
+  - yarn build
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: false
+  local-dir: dist
+  on:
+    branch: master
+    node: lts/*
