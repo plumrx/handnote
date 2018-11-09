@@ -31,8 +31,6 @@ import {
   TimePicker,
   Popover,
   Tooltip,
-  Breadcrumb,
-  BreadcrumbItem,
   Form,
   FormItem,
   Tabs,
@@ -42,8 +40,6 @@ import {
   Alert,
   Slider,
   Icon,
-  Row,
-  Col,
   Upload,
   Progress,
   Badge,
@@ -58,15 +54,9 @@ import {
   Cascader,
   ColorPicker,
   Transfer,
-  Container,
-  Header,
-  Aside,
-  Main,
-  Footer,
   Loading,
   MessageBox,
   Message,
-  Notification,
 } from 'element-ui'
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
 
@@ -101,8 +91,6 @@ Vue.use(TimeSelect)
 Vue.use(TimePicker)
 Vue.use(Popover)
 Vue.use(Tooltip)
-Vue.use(Breadcrumb)
-Vue.use(BreadcrumbItem)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Tabs)
@@ -112,8 +100,6 @@ Vue.use(Tree)
 Vue.use(Alert)
 Vue.use(Slider)
 Vue.use(Icon)
-Vue.use(Row)
-Vue.use(Col)
 Vue.use(Upload)
 Vue.use(Progress)
 Vue.use(Badge)
@@ -128,11 +114,6 @@ Vue.use(CollapseItem)
 Vue.use(Cascader)
 Vue.use(ColorPicker)
 Vue.use(Transfer)
-Vue.use(Container)
-Vue.use(Header)
-Vue.use(Aside)
-Vue.use(Main)
-Vue.use(Footer)
 
 Vue.use(Loading.directive)
 
@@ -141,4 +122,3 @@ Vue.component(CollapseTransition.name, CollapseTransition)
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$dialog = MessageBox
 Vue.prototype.$message = Message
-Vue.prototype.$notify = Notification

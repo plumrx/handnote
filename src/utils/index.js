@@ -40,7 +40,7 @@ export default class Utils {
     try {
       window.applicationCache.update()
     } catch (error) {
-      vm.$notify.success('已经是最新的了')
+      vm.$message.success('已经是最新的了')
     }
   }
 }
