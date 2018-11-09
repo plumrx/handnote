@@ -9,8 +9,8 @@ export default {
   isSupported: (() => {
     try {
       return (
-        window.sessionStorage.setItem('calendar', 'lalala'),
-        window.sessionStorage.removeItem('calendar'),
+        window.sessionStorage.setItem('handnote', 'mrx'),
+        window.sessionStorage.removeItem('handnote'),
         true
       )
     } catch (err) {

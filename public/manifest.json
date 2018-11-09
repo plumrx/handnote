@@ -1,6 +1,6 @@
 {
-  "name": "calendar",
-  "short_name": "calendar",
+  "name": "handnote",
+  "short_name": "handnote",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",

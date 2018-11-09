@@ -1,10 +1,10 @@
 <template>
   <el-collapse-item class="setting-item about" name="about">
-    <span slot="title" class="item-title">关于 Calendar</span>
+    <span slot="title" class="item-title">关于 Handnote</span>
     <el-form class="item-content" label-width="6em" label-position="left">
       <el-card class="about-card">
-        <h2>Calendar</h2>
-        <p>Calendar 是一个综合了日程、备忘录、TODO、生理期、账单等功能，将这些功能集中在一张日历上。 </p>
+        <h2>Handnote</h2>
+        <p>Handnote 是一个综合了日程、备忘录、TODO、生理期、账单、愿望单、囤货清单等功能，将这些功能集中在一张日历上。 </p>
         <blockquote class="quote"> 做你生命进程的小管家。 </blockquote>
       </el-card>
       <el-button class="item-btn" @click="randomColor">换个心情</el-button>

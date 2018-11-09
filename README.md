@@ -1,4 +1,6 @@
-# calendar
+# handnote
+
+[![Travis (.org)](https://img.shields.io/travis/mutoe/handnote.svg?style=flat-square)](https://travis-ci.org/mutoe/handnote)
 
 ## Project setup
 ```
