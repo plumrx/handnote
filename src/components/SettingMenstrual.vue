@@ -1,6 +1,6 @@
 <template>
   <el-collapse-item class="setting-item" name="menstrual">
-    <span slot="title" :class="{ disabled: !enable }" class="item-title">例假视图</span>
+    <span slot="title" :class="{ disabled: !enable }" class="item-title">生理期视图</span>
     <el-form class="item-content" label-width="6em" label-position="left">
       <el-form-item label="启用">
         <el-switch :value="enable" @change="toggleEnable" />
@@ -35,10 +35,10 @@
       </el-collapse-transition>
       <el-card>
         <p>
-          例假视图为您展示您的例假到访日期。
+          生理期视图为您展示您的生理期。
           <br>
-          您可以在上面设置最近一次例假来访的日子、每两次来访间隔时间和每次到访持续时间，
-          程序将自动为你计算以后的例假到访日期。
+          您可以在上面设置最近一次生理期来访的日子、每两次来访间隔时间和每次到访持续时间，
+          程序将自动为你计算以后的生理期到访日期。
         </p>
         <p> 关心女友，更关心你。 </p>
       </el-card>

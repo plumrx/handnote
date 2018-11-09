@@ -3,9 +3,9 @@ import Utils from '@/utils'
 
 const state = {
   enable: localStore.getData('menstrual_enable') || false,
-  lastDate: localStore.getData('menstrual_lastDate') || null,
-  cycle: localStore.getData('menstrual_cycle') || 28,
-  during: localStore.getData('menstrual_during') || 6,
+  lastDate: localStore.getData('menstrual_lastDate') || new Date(),
+  cycle: localStore.getData('menstrual_cycle') || 30,
+  during: localStore.getData('menstrual_during') || 7,
 }
 
 const getters = {
@@ -14,15 +14,18 @@ const getters = {
    */
   daysInCycle: state => target => {
     const startDay = Utils.getDayTimestamp(state.lastDate)
-    const endDay = Utils.getDayTimestamp(target.lastDate)
-    const offset = (endDay - startDay) / 86400 // 86400 == 24 * 3600
+    const endDay = Utils.getDayTimestamp(target)
+    const offset = (endDay - startDay) / 1000 / 86400 // 86400 == 24 * 3600
     return offset % state.cycle
   },
   /**
    * 目标日期是否在经期内
    */
-  isMenstrualDay: (state, getters) => target => {
-    return getters.daysOfCycle(target) < state.during
+  isMenstrualDay: (state) => target => {
+    const startDay = Utils.getDayTimestamp(state.lastDate)
+    const endDay = Utils.getDayTimestamp(target)
+    const offset = (endDay - startDay) / 1000 / 86400 // 86400 == 24 * 3600
+    return offset % state.cycle < state.during
   },
 }
 

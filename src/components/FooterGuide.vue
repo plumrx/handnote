@@ -16,7 +16,8 @@ export default {
 .c-footer-nav
   position fixed
   bottom 0
-  width 100%
+  left 0
+  right 0
   display flex
   justify-content space-around
   align-items center
