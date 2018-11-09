@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/views/Home'
-import Settings from '@/views/Settings'
+import Calendar from '@/views/Calendar'
+import Profile from '@/views/Profile'
 
 Vue.use(Router)
 
@@ -10,13 +10,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'calendar',
+      component: Calendar,
     },
     {
-      path: '/settings',
-      name: 'settings',
-      component: Settings,
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
     },
   ],
 })

@@ -27,4 +27,20 @@ export default class Utils {
   static getDayTimestamp (time) {
     return +new Date(moment(time).format('YYYY-MM-DD'))
   }
+
+  /**
+   * 清除本地缓存
+   * PWA 在静态文件更新时不会下载最新的文件，需要进行缓存更新
+   *
+   * @author mutoe <mutoe@foxmail.com>
+   * @static
+   * @memberof Utils
+   */
+  static clearAppCache (vm) {
+    try {
+      window.applicationCache.update()
+    } catch (error) {
+      vm.$notify.success('已经是最新的了')
+    }
+  }
 }

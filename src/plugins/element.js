@@ -68,6 +68,7 @@ import {
   Message,
   Notification,
 } from 'element-ui'
+import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
 
 Vue.use(Pagination)
 Vue.use(Dialog)
@@ -134,6 +135,8 @@ Vue.use(Main)
 Vue.use(Footer)
 
 Vue.use(Loading.directive)
+
+Vue.component(CollapseTransition.name, CollapseTransition)
 
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$dialog = MessageBox

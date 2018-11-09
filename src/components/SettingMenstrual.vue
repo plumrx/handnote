@@ -1,34 +1,38 @@
 <template>
-  <el-collapse-item class="setting-item" name="1">
-    <span slot="title" :class="{ active: enable }" class="item-title">例假视图</span>
+  <el-collapse-item class="setting-item" name="menstrual">
+    <span slot="title" :class="{ disabled: !enable }" class="item-title">例假视图</span>
     <el-form class="item-content" label-width="6em" label-position="left">
       <el-form-item label="启用">
         <el-switch :value="enable" @change="toggleEnable" />
       </el-form-item>
-      <el-form-item label="上次时间">
-        <el-date-picker
-          v-model="date"
-          type="date"
-          placeholder="最近一次开始的时间"
-          size="small"
-        />
-      </el-form-item>
-      <el-form-item label="间隔时间">
-        <el-input-number
-          :value="cycle"
-          :min="1"
-          size="small"
-          @change="updateCycle"
-        /> 天
-      </el-form-item>
-      <el-form-item label="持续时间">
-        <el-input-number
-          :value="during"
-          :min="1"
-          size="small"
-          @change="updateDuring"
-        /> 天
-      </el-form-item>
+      <el-collapse-transition>
+        <div v-show="enable">
+          <el-form-item label="上次时间">
+            <el-date-picker
+              v-model="date"
+              type="date"
+              placeholder="最近一次开始的时间"
+              size="small"
+            />
+          </el-form-item>
+          <el-form-item label="间隔时间">
+            <el-input-number
+              :value="cycle"
+              :min="1"
+              size="small"
+              @change="updateCycle"
+            /> 天
+          </el-form-item>
+          <el-form-item label="持续时间">
+            <el-input-number
+              :value="during"
+              :min="1"
+              size="small"
+              @change="updateDuring"
+            /> 天
+          </el-form-item>
+        </div>
+      </el-collapse-transition>
       <el-card>
         <p>
           例假视图为您展示您的例假到访日期。
