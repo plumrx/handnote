@@ -9,7 +9,7 @@
 <script>
 import { mapState } from 'vuex'
 import moment from 'moment'
-import { types } from '@/store'
+import { types } from '@/stores'
 
 export default {
   name: 'CalendarMonthItem',
@@ -40,7 +40,7 @@ export default {
   flex none
   width (98vw / 7)
   height @width
-  padding 1vw
+  padding 4px
 
   .item
     display flex
@@ -48,11 +48,12 @@ export default {
     justify-content center
     flex auto
     border-radius 1vw
+    border 1px solid transparent
 
     &.today
       background-color $secondary
 
     &.selected
-      border 1px solid $primary
+      border-color $primary
 
 </style>

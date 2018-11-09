@@ -18,9 +18,9 @@
       <header class="calendar-month-item-wrap">
         <span v-for="week in weeks" :key="week" class="week-item">{{ week }}</span>
       </header>
-      <section class="calendar-month-item-wrap">
+      <transition-group name="flip-list" tag="section" class="calendar-month-item-wrap">
         <CalendarMonthItem v-for="(day, index) in days" :key="index" :day="day" />
-      </section>
+      </transition-group>
     </main>
   </div>
 </template>
@@ -29,7 +29,7 @@
 import moment from 'moment'
 import { mapState, mapGetters } from 'vuex'
 import Day from '@/core/Day'
-import { types } from '@/store'
+import { types } from '@/stores'
 import CalendarMonthItem from './CalendarMonthItem'
 
 export default {
@@ -49,7 +49,6 @@ export default {
     currentDays () {
       const daysInMonth = moment(this.current).daysInMonth()
       return new Array(daysInMonth).fill(null).map((value, index) => new Day({
-        // type: 'current',
         display: index + 1,
         moment: moment(this.current).date(1).add(index, 'days'),
       }))

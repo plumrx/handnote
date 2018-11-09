@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { types } from '@/store'
+import { types } from '@/stores'
 
 export default {
   name: 'FooterNav',

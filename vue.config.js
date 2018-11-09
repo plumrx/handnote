@@ -8,5 +8,6 @@ module.exports = {
         import: [resolve(__dirname, 'src/stylus/variables.styl')],
       },
     },
+    sourceMap: true,
   },
 }

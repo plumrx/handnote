@@ -29,31 +29,6 @@
     "vue-cli-plugin-element": "^1.0.0",
     "vue-template-compiler": "^2.5.17"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/recommended",
-      "@vue/standard"
-    ],
-    "rules": {
-      "comma-dangle": [
-        2,
-        "always-multiline"
-      ],
-      "vue/max-attributes-per-line": [
-        2,
-        {
-          "singleline": 3
-        }
-      ]
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
   "postcss": {
     "plugins": {
       "autoprefixer": {}
