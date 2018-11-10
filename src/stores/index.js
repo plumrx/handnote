@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import moment from 'moment'
 import localStore from '@/utils/localStore'
 
+import create from './create'
 import menstrual from './menstrual'
 
 window.moment = moment
@@ -86,6 +87,7 @@ export default new Vuex.Store({
   mutations: rootMutations,
   actions: rootActions,
   modules: {
+    create,
     menstrual,
   },
 })

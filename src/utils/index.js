@@ -1,5 +1,8 @@
 import moment from 'moment'
 
+// noop
+export const noop = () => {}
+
 export default class Utils {
   /**
    * 设置主题色

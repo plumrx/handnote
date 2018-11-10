@@ -1,7 +1,8 @@
 <template>
   <nav class="c-footer-nav">
     <router-link :to="{name: 'calendar'}" tag="button">日历</router-link>
-    <button class="plus"><i class="el-icon-plus" /></button>
+    <router-link :to="{name: 'wishes'}" tag="button">愿望单</router-link>
+    <router-link :to="{name: 'create'}" tag="button" class="plus"><i class="el-icon-plus" /></router-link>
     <router-link :to="{name: 'profile'}" tag="button">设置</router-link>
   </nav>
 </template>
@@ -21,7 +22,7 @@ export default {
   display flex
   justify-content space-around
   align-items center
-  padding 4px 12px
+  height $footer-height
   background $secondary
 
   &::before
