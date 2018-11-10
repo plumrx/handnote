@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="wish in wishes[category.label]" :key="wish.updateAt">
+            <tr v-for="wish in wishes[category.label]" :key="wish.updateAt" @click="onWishClick(wish)">
               <td class="name">{{ wish.name }}</td>
               <td class="price">{{ wish.price.toFixed(2) }}</td>
             </tr>
@@ -35,7 +35,8 @@
 
 <script>
 import _ from 'lodash'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
+import { types } from '@/stores/wishes'
 
 export default {
   name: 'Wishes',
@@ -49,9 +50,18 @@ export default {
     },
   },
   methods: {
+    ...mapMutations('wishes', {
+      updateList: types.UPDATE_LIST,
+      deleteItem: types.DELETE_ITEM,
+    }),
     summaryCategory (cate) {
       const prices = _.map(this.wishes[cate.label], 'price')
       return prices.reduce((total, val) => total + val).toFixed(2)
+    },
+    onWishClick (wish) {
+      if (window.confirm('确定要删除这一项？')) {
+        this.deleteItem(wish)
+      }
     },
   },
 }
@@ -82,7 +92,7 @@ export default {
 
   .summary
     text-align center
-    padding-top $lg
+    padding $lg 0
 
     output
       display block

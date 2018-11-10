@@ -127,7 +127,6 @@ export default {
       })
       this.clear()
       this.$refs.name.focus()
-      return false
     },
     clear () {
       this.wish.name = ''

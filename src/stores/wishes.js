@@ -13,6 +13,7 @@ export const types = {
   UPDATE_CATEGORIES: 'UPDATE_CATEGORIES',
   UPDATE_SHOPS: 'UPDATE_SHOPS',
   UPDATE_LIST: 'UPDATE_LIST',
+  DELETE_ITEM: 'DELETE_ITEM',
 }
 
 const mutations = {
@@ -39,9 +40,14 @@ const mutations = {
     state.list = _.unionBy(state.list, list, wish => wish.category + wish.name)
     localStore.setData('wishes_list', state.list)
   },
+
+  [types.DELETE_ITEM] (state, wish) {
+    state.list = _.reject(state.list, item => wish.category === item.category && wish.name === item.name)
+    localStore.setData('wishes_list', state.list)
+  },
+
 }
 
-const actions = {
-}
+const actions = { }
 
 export default { namespaced: true, state, getters, mutations, actions }
