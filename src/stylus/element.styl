@@ -16,6 +16,14 @@
   &__inner
     &:focus
       border-color $tertiary
+  &-number
+    &__decrease
+    &__increase
+      &:hover
+        color $tertiary
+        &:not(.is-disabled)~.el-input
+          .el-input__inner:not(.is-disabled)
+            border-color @color
 
 .el-select
   .el-input

@@ -27,6 +27,7 @@
           allow-create
           default-first-option
           placeholder="可选择或直接输入"
+          tabindex="-1"
         >
           <el-option
             v-for="shop in shops"
@@ -39,7 +40,16 @@
       </label>
       <label class="form-item">
         <span class="label">物品</span>
-        <el-input ref="name" v-model="wish.name" autofocus />
+        <el-input
+          ref="name"
+          v-model="wish.name"
+          autofocus
+          clearable
+        />
+      </label>
+      <label class="form-item">
+        <span class="label">数量</span>
+        <el-input-number v-model="wish.count" :min="1" :precision="0" />
       </label>
       <label class="form-item price">
         <span class="label">价格</span>
@@ -49,6 +59,10 @@
           type="number"
           placeholder="0.00"
         />
+      </label>
+      <label class="form-item summary price">
+        <span class="label">总价</span>
+        <DynamicNumber :value="summary" :precision="2" />
       </label>
       <button class="hidden" type="submit" />
     </form>
@@ -92,15 +106,18 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import { types } from '@/stores/wishes'
+import DynamicNumber from '@/components/DynamicNumber'
 
 export default {
   name: 'CreateWishes',
+  components: { DynamicNumber },
   data () {
     return {
       wish: {
         category: '未分类',
         shop: undefined,
         name: '',
+        count: 1,
         price: undefined,
       },
       showHelp: false,
@@ -108,6 +125,11 @@ export default {
   },
   computed: {
     ...mapState('wishes', ['categories', 'shops']),
+    summary () {
+      const { price, count } = this.wish
+      const sum = price * count || 0
+      return sum
+    },
   },
   created () {
     this.$parent.$on('save', this.onSave)
@@ -180,12 +202,22 @@ export default {
 
 <style lang="stylus">
 .c-create-wishes
-  .form-item.price
-    height 80px !important
+  .form-item
+    &.price
+      height 70px !important
 
-    input.el-input__inner
-      height @height - 20
-      font-size 2.4em
-      letter-spacing 4px
+      input.el-input__inner
+        height @height - 20
+        font-size 2em
+        letter-spacing 4px
+
+    &.summary
+      span.c-dynamic-number
+        padding 0 15px
+        border none
+        background-color transparent
+        color $primary
+        font-size 2.4em
+        letter-spacing 4px
 
 </style>
