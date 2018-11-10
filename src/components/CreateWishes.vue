@@ -43,7 +43,12 @@
       </label>
       <label class="form-item price">
         <span class="label">价格</span>
-        <el-input v-model.number="wish.price" type="number" placeholder="0.00" />
+        <el-input
+          v-model.number="wish.price"
+          :step="0.01"
+          type="number"
+          placeholder="0.00"
+        />
       </label>
       <button class="hidden" type="submit" />
     </form>
