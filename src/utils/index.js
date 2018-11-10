@@ -9,13 +9,15 @@ export default class Utils {
    *
    * @author mutoe <mutoe@foxmail.com>
    * @static
-   * @param {number} colorAngel 主题色 HUE 色相环角度
+   * @param {number} colorAngle 主题色 HUE 色相环角度
    * @memberof Utils
    */
-  static setThemeColor (colorAngel) {
+  static setThemeColor (colorAngle) {
     const rootStyle = document.documentElement.style
-    rootStyle.setProperty('--color-primary', `hsla(${colorAngel}, 100%, 60%, 1)`)
-    rootStyle.setProperty('--color-secondary', `hsla(${colorAngel}, 100%, 90%, 1)`)
+    rootStyle.setProperty('--color-primary', `hsla(${colorAngle}, 100%, 66%, 1)`)
+    rootStyle.setProperty('--color-secondary', `hsla(${colorAngle}, 100%, 80%, 1)`)
+    rootStyle.setProperty('--color-tertiary', `hsla(${colorAngle}, 100%, 90%, 1)`)
+    rootStyle.setProperty('--color-angle', colorAngle)
   }
 
   /**

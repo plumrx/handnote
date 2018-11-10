@@ -47,11 +47,12 @@ export default {
       padding 6px 16px
 
     &.plus
-      font-size 30px
+      font-size 36px
       background-color $light
       color $secondary
       border 2px solid @color
-      margin-top -16px
+      border-radius $sm
+      margin-top -($md)
       z-index 1
 
 </style>

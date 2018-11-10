@@ -1,3 +1,26 @@
 // button
 .el-button
+  &--secondary
     border-color $secondary
+  &--text
+    color $secondary
+
+  &:focus
+  &:hover
+    color $primary
+    border-color $tertiary
+    background-color "hsla(%s, 100%, 95%, 1)" % $colorAngle
+
+// input
+.el-input
+  &__inner
+    &:focus
+      border-color $tertiary
+
+.el-select
+  .el-input
+    &.is-focus .el-input__inner
+    &__inner:focus
+      border-color $tertiary
+  &-dropdown__item.selected
+    color $primary

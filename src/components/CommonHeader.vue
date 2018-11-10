@@ -84,6 +84,7 @@ export default {
   + main
     width 100%
     padding-bottom $footer-height
+    overflow auto
 
   &.pinned + main
     padding-top $header-height

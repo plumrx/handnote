@@ -2,7 +2,7 @@
   <div class="p-create">
     <common-header>
       创建事件
-      <span slot="right" @click="$emit('save')">保存</span>
+      <i slot="right" class="save-btn el-icon-check" @click="$emit('save')" />
     </common-header>
     <main>
       <CreateTypes />
@@ -47,5 +47,9 @@ export default {
 <style lang="stylus" scoped>
 .p-create
   display flex
+
+  .right .save-btn
+    color $primary
+    font-size 26px
 
 </style>

@@ -5,6 +5,7 @@ import localStore from '@/utils/localStore'
 
 import create from './create'
 import menstrual from './menstrual'
+import wishes from './wishes'
 
 window.moment = moment
 
@@ -89,5 +90,6 @@ export default new Vuex.Store({
   modules: {
     create,
     menstrual,
+    wishes,
   },
 })
