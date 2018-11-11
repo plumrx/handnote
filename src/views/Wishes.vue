@@ -4,7 +4,7 @@
       愿望单
       <span slot="left" />
     </common-header>
-    <main>
+    <main v-if="list.length">
       <section v-for="category in categories" :key="category.label">
         <table class="category-table">
           <caption>{{ category.label }}</caption>
@@ -39,6 +39,10 @@
         <output>¥ {{ summary }}</output>
         <small>FOR {{ list.length }} ITEMS</small>
       </footer>
+    </main>
+    <main v-else class="empty">
+      <h2>你的愿望单是空的</h2>
+      <p>赶紧添加一个愿望吧</p>
     </main>
   </div>
 </template>
@@ -80,6 +84,15 @@ export default {
 <style lang="stylus" scoped>
 .p-wishes
   background-color #fff
+
+  main.empty
+    height 100%
+    display flex
+    flex-direction column
+    justify-content space-around
+    align-items center
+    text-align center
+    color $dark * 3
 
   table.category-table
     width 100%
