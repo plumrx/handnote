@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.72261000d4e8d3c518ad81825f262970.js"
+  "/precache-manifest.c6d2c34dbf0c398c35625d1639f0c0a4.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "handnote"});
