@@ -39,6 +39,7 @@
         <span class="label">保质期</span>
         <el-date-picker
           v-model="inventory.expired"
+          align="right"
           :picker-options="expiredOptions"
         />
       </label>
@@ -118,13 +119,15 @@ export default {
         remarks: '',
       },
       showHelp: false,
-      expiredOptions: [
-        { text: '明天', onClick: onFuture(1) },
-        { text: '3天后', onClick: onFuture(3) },
-        { text: '1周后', onClick: onFuture(7) },
-        { text: '2周后', onClick: onFuture(14) },
-        { text: '1个月后', onClick: onFuture(30) },
-      ],
+      expiredOptions: {
+        shortcuts: [
+          { text: '明天', onClick: onFuture(1) },
+          { text: '3天后', onClick: onFuture(3) },
+          { text: '1周后', onClick: onFuture(7) },
+          { text: '2周后', onClick: onFuture(14) },
+          { text: '1个月后', onClick: onFuture(30) },
+        ],
+      },
     }
   },
   computed: {

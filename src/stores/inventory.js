@@ -35,15 +35,16 @@ const initCategories = [
   { parent: '护肤品', label: '洁面' },
   { parent: '护肤品', label: '爽肤水' },
   { parent: '护肤品', label: '精华' },
-  { parent: '护肤品', label: '眼霜' },
   { parent: '护肤品', label: '乳液' },
-  { parent: '护肤品', label: '面霜' },
+  { parent: '护肤品', label: '眼霜' },
   { parent: '护肤品', label: '面霜' },
   { parent: '护肤品', label: '护手霜' },
   { parent: '护肤品', label: '身体乳' },
   { parent: '', label: '食品' },
-  { parent: '食品', label: '速食品' },
+  { parent: '食品', label: '生鲜' },
   { parent: '食品', label: '干货' },
+  { parent: '食品', label: '速食品' },
+  { parent: '食品', label: '饮品' },
 ]
 
 const state = {
