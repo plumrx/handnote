@@ -15,7 +15,7 @@
 .el-input
   &__inner
     &:focus
-      border-color $tertiary
+      border-color $primary
   &-number
     &__decrease
     &__increase
@@ -25,6 +25,7 @@
           .el-input__inner:not(.is-disabled)
             border-color @color
 
+// select
 .el-select
   .el-input
     &.is-focus .el-input__inner
@@ -32,3 +33,14 @@
       border-color $tertiary
   &-dropdown__item.selected
     color $primary
+
+// radio
+.el-radio
+  &-button
+    &__orig-radio:checked + .el-radio-button__inner
+      background-color $secondary
+      border-color @background-color
+      box-shadow -1px 0 0 0 @background-color
+
+    &__inner:hover
+      color $secondary

@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Calendar from '@/views/Calendar'
 import Profile from '@/views/Profile'
 import Wishes from '@/views/Wishes'
+import Inventory from '@/views/Inventory'
 import Create from '@/views/Create'
 import CreateSchedule from '@/components/CreateSchedule'
 import CreateMemorial from '@/components/CreateMemorial'
@@ -30,6 +31,11 @@ export default new Router({
       path: '/wishes',
       name: 'wishes',
       component: Wishes,
+    },
+    {
+      path: '/inventory',
+      name: 'inventory',
+      component: Inventory,
     },
     {
       path: '/create',
