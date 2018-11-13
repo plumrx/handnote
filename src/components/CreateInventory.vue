@@ -26,7 +26,6 @@
         <el-input-number
           v-model="inventory.count"
           :min="0"
-          :precision="1"
           size="small"
         />
         <el-radio-group v-model="inventory.unit" size="small">
