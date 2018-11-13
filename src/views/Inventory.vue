@@ -45,6 +45,7 @@
       <h2>你的囤货单是空的</h2>
       <p>赶紧添加一些囤货吧</p>
     </main>
+    <FooterGuide />
   </div>
 </template>
 
@@ -52,9 +53,11 @@
 import _ from 'lodash'
 import { mapState, mapMutations } from 'vuex'
 import { types } from '@/stores/inventory'
+import FooterGuide from '@/components/FooterGuide'
 
 export default {
   name: 'Inventory',
+  components: { FooterGuide },
   data () {
     return {
       activeName: '日用品',

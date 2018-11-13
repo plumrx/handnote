@@ -44,6 +44,7 @@
       <h2>你的愿望单是空的</h2>
       <p>赶紧添加一个愿望吧</p>
     </main>
+    <FooterGuide />
   </div>
 </template>
 
@@ -51,9 +52,13 @@
 import _ from 'lodash'
 import { mapState, mapMutations } from 'vuex'
 import { types } from '@/stores/wishes'
+import FooterGuide from '@/components/FooterGuide'
 
 export default {
   name: 'Wishes',
+  components: {
+    FooterGuide,
+  },
   computed: {
     ...mapState('wishes', ['list', 'categories']),
     wishes () {

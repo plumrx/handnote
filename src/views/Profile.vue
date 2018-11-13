@@ -4,16 +4,19 @@
       <SettingMenstrual />
       <SettingAbout />
     </el-collapse>
+    <FooterGuide />
   </div>
 </template>
 
 <script>
+import FooterGuide from '@/components/FooterGuide'
 import SettingMenstrual from '@/components/SettingMenstrual'
 import SettingAbout from '@/components/SettingAbout'
 
 export default {
   name: 'Profile',
   components: {
+    FooterGuide,
     SettingMenstrual,
     SettingAbout,
   },
