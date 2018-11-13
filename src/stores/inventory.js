@@ -2,7 +2,6 @@ import _ from 'lodash'
 import localStore from '@/utils/localStore'
 
 const initCategories = [
-  { parent: '', label: '未分类' },
   { parent: '', label: '日用品' },
   { parent: '日用品', label: '纸巾' },
   { parent: '日用品', label: '洗脸巾' },
@@ -45,6 +44,7 @@ const initCategories = [
   { parent: '食品', label: '干货' },
   { parent: '食品', label: '速食品' },
   { parent: '食品', label: '饮品' },
+  { parent: '', label: '未分类' },
 ]
 
 const state = {
