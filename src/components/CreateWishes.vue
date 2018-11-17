@@ -190,6 +190,9 @@ export default {
     align-self flex-start
     color $secondary
     margin-bottom $sm
+    border none
+    background-color transparent
+    outline none
 
   .description
     h2

@@ -5,8 +5,16 @@
 
 .slide-fade-enter
 .slide-fade-leave-to
-  transform translateX(10px)
+  transform translateY(-10px)
   opacity 0
 
 .slide-fade-move
   transition transform 1s
+
+.fade-enter-active
+.fade-leave-active
+  transition all .3s
+
+.fade-enter
+.fade-leave-to
+  opacity 0
