@@ -12,6 +12,9 @@
  * @example 农历转公历：calendar.lunar2solar(1987,09,10); //[you can ignore params of prefix 0]
  */
 
+import moment from 'moment'
+import Utils from './index'
+
 export default {
 
   /**
@@ -227,11 +230,11 @@ export default {
    */
   solarDays (y, m) {
     if (m > 12 || m < 1) return -1 // 若参数错误 返回-1
-    var ms = m - 1
-    if (ms === 1) { // 2月份的闰平规律测算后确认返回28或29
+    var mIndex = m - 1
+    if (mIndex === 1) { // 2月份的闰平规律测算后确认返回28或29
       return ((y % 4 === 0) && (y % 100 !== 0)) || (y % 400 === 0) ? 29 : 28
     } else {
-      return this.solarMonth[ms]
+      return this.solarMonth[mIndex]
     }
   },
 
@@ -257,7 +260,7 @@ export default {
   toAstro (cMonth, cDay) {
     var s = '\u9b54\u7faf\u6c34\u74f6\u53cc\u9c7c\u767d\u7f8a\u91d1\u725b\u53cc\u5b50\u5de8\u87f9\u72ee\u5b50\u5904\u5973\u5929\u79e4\u5929\u874e\u5c04\u624b\u9b54\u7faf'
     var arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22]
-    return s.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + '座'// 座
+    return s.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + '座'
   },
 
   /**
@@ -322,6 +325,15 @@ export default {
     return parseInt(_calday[n - 1])
   },
 
+  /**
+   * 传入罗马数字年份返回汉字年份
+   *
+   * @author mutoe <mutoe@foxmail.com>
+   * @param {number} year
+   * @returns {string}
+   * @example
+   * calendar.toChinaYear(2018) // => '二零一八'
+   */
   toChinaYear (year) {
     year = String(year).split('')
     let result = ''
@@ -329,7 +341,7 @@ export default {
       let i = Number(year.shift())
       result += this.nStr1[i]
     } while (year.length)
-    return `${result}年`
+    return `${result}`
   },
 
   /**
@@ -375,6 +387,32 @@ export default {
    */
   getAnimal (y) {
     return this.Animals[(y - 4) % 12]
+  },
+
+  /**
+   * 获取目标时间距离下一个周期的时间
+   *
+   * @author mutoe <mutoe@foxmail.com>
+   * @param {*} solar SolarLunar Object
+   * @param {boolean} [isLunar=false] 是否农历
+   * @returns
+   */
+  getRemainingDay (solar, isLunar = false) {
+    let nextYear = new Date().getFullYear()
+    if (isLunar) {
+      // 农历生日 先计算出今年对应的公历，如果已经过了今年日期则往后推一年重新计算
+      solar = this.lunar2solarByLeap(nextYear, solar.lMonth, solar.lDay, solar.isLeap)
+      // 判断是否已经过了今年生日
+      const isAfter = moment().isAfter([nextYear, solar.cMonth - 1, solar.cDay], 'day')
+      // 如果过了，往后推一年，并重新计算阳历
+      if (isAfter) solar = this.lunar2solarByLeap(++nextYear, solar.lMonth, solar.lDay, solar.isLeap)
+    } else {
+      // 如果已经过了今年的生日，则往后推一年
+      const isAfter = moment().isAfter([nextYear, solar.cMonth - 1, solar.cDay], 'day')
+      if (isAfter) nextYear++
+    }
+    const today = Utils.getToday()
+    return moment([nextYear, solar.cMonth - 1, solar.cDay]).diff(moment(today), 'day')
   },
 
   /**
@@ -489,6 +527,7 @@ export default {
       'Animal': this.getAnimal(year),
       'IMonthCn': (isLeap ? '润' : '') + this.toChinaMonth(month),
       'IDayCn': this.toChinaDay(day),
+      'IYearCn': this.toChinaYear(year),
       'cYear': y,
       'cMonth': m,
       'cDay': d,

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Calendar from '@/views/Calendar'
 import Profile from '@/views/Profile'
+import Events from '@/views/Events'
 import Wishes from '@/views/Wishes'
 import Inventory from '@/views/Inventory'
 import Create from '@/views/Create'
@@ -21,6 +22,11 @@ export default new Router({
       path: '/calendar',
       name: 'calendar',
       component: Calendar,
+    },
+    {
+      path: '/events',
+      name: 'events',
+      component: Events,
     },
     {
       path: '/profile',

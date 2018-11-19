@@ -67,6 +67,19 @@ export default {
   },
 
   /**
+   * 返回某日凌晨时间
+   *
+   * @author mutoe <mutoe@foxmail.com>
+   * @param {*} [time] moment-like 如果不填则获取今天
+   * @returns {moment.Moment}
+   */
+  getToday (time) {
+    const YMD = moment(time).format('YYYY-MM-DD').split('-')
+    YMD[1]--
+    return moment(YMD)
+  },
+
+  /**
    * 清除本地缓存
    * PWA 在静态文件更新时不会下载最新的文件，需要进行缓存更新
    *

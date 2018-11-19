@@ -1,6 +1,7 @@
 <template>
   <nav class="c-footer-nav">
     <router-link :to="{name: 'calendar'}" tag="button">日历</router-link>
+    <router-link :to="{name: 'events'}" tag="button">事件</router-link>
     <router-link :to="{name: 'wishes'}" tag="button">愿望单</router-link>
     <router-link :to="{name: 'create'}" tag="button" class="plus"><i class="el-icon-plus" /></router-link>
     <router-link :to="{name: 'inventory'}" tag="button">囤货</router-link>
