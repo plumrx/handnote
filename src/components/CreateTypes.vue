@@ -40,10 +40,7 @@ ul.c-create-type
   justify-content space-around
   align-items center
   height 64px
-  margin 0
-  padding 0
   border-bottom $border
-  list-style-type none
 
   > li.type-item
     display flex

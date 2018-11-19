@@ -1,8 +1,8 @@
 <template>
   <header :class="{pinned}" class="c-common-header">
-    <div class="left" @click="onBackClick">
+    <div class="left">
       <slot name="left">
-        <i class="el-icon-back" />
+        <i class="el-icon-back" @click="onBackClick" />
       </slot>
     </div>
     <div class="title">
@@ -61,6 +61,11 @@ export default {
     min-width @height
 
     > i
+      display flex
+      align-items center
+      justify-content center
+      width 100%
+      height 100%
       font-size 20px
 
   .title

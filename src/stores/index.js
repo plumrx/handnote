@@ -7,8 +7,7 @@ import create from './create'
 import menstrual from './menstrual'
 import wishes from './wishes'
 import inventory from './inventory'
-
-window.moment = moment
+import memorial from './memorial'
 
 Vue.use(Vuex)
 
@@ -93,5 +92,6 @@ export default new Vuex.Store({
     menstrual,
     wishes,
     inventory,
+    memorial,
   },
 })

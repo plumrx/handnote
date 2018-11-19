@@ -67,17 +67,17 @@ export default {
         isLunar: false,
         year: new Date().getFullYear(),
         monthIndex: new Date().getMonth(),
-        dayIndex: new Date().getDay() - 1,
+        day: new Date().getDay(),
       }),
     },
   },
   data () {
     return {
-      visible: true,
+      visible: false,
       isLunar: this.date.isLunar,
       year: this.date.year,
       monthIndex: this.date.monthIndex,
-      dayIndex: this.date.dayIndex,
+      day: this.date.day,
       yearList: Utils.getYearList(),
     }
   },
@@ -85,13 +85,13 @@ export default {
     yearText () {
       if (!this.isLunar) return `公历${this.year}年`
       const lunarYear = calendar.toChinaYear(this.year)
-      return `农历${lunarYear}`
+      return `农历${lunarYear}年`
     },
     weekday () {
-      const { isLunar, year, monthIndex, dayIndex } = this.$data
+      const { isLunar, year, monthIndex, day } = this.$data
       let date
-      if (isLunar) date = calendar.lunar2solar(year, monthIndex, dayIndex + 1)
-      else date = calendar.solar2lunar(year, monthIndex + 1, dayIndex + 1)
+      if (isLunar) date = calendar.lunar2solar(year, monthIndex, day)
+      else date = calendar.solar2lunar(year, monthIndex + 1, day)
       return date.ncWeek
     },
     yearIndex: {
@@ -102,13 +102,21 @@ export default {
         this.year = val + Utils.yearRange[0]
       },
     },
+    dayIndex: {
+      get () {
+        return this.day - 1
+      },
+      set (val) {
+        this.day = val + 1
+      },
+    },
     monthList () {
       if (this.isLunar) return Utils.getLunarMonthList(this.year)
       return Utils.getSolarMonthList()
     },
     dateList () {
-      if (this.isLunar) return Utils.getLunarDateList(this.year, this.monthIndex)
-      return Utils.getSolarDateList(this.year, this.monthIndex)
+      if (!this.isLunar) return Utils.getSolarDateList(this.year, this.monthIndex + 1)
+      return Utils.getLunarDateList(this.year, this.monthIndex + 1)
     },
     leapMonth () {
       return calendar.leapMonth(this.year)
@@ -121,11 +129,11 @@ export default {
       let date = {
         year: this.year,
         month: this.monthIndex + 1,
-        day: this.dayIndex + 1,
+        day: this.day,
       }
       // 如果是农历则转化为公历
       if (this.isLunar) {
-        const { cYear, cMonth, cDay } = calendar.lunar2solar(this.year, this.monthIndex, this.dayIndex + 1)
+        const { cYear, cMonth, cDay } = calendar.lunar2solar(this.year, this.monthIndex, this.day)
         date = { year: cYear, month: cMonth, day: cDay }
       }
       date.month--
@@ -143,19 +151,19 @@ export default {
      * 监听公农历切换，保持当天日期不变
      */
     isLunar (toLunar) {
-      const { year, monthIndex, dayIndex } = this.$data
+      const { year, monthIndex, day } = this.$data
       if (toLunar) {
         const leap = calendar.leapMonth(year)
-        const date = calendar.solar2lunar(year, monthIndex + 1, dayIndex + 1)
+        const date = calendar.solar2lunar(year, monthIndex + 1, day)
         this.year = date.lYear
         if (!leap || leap < monthIndex) date.lMonth -= 1 // 闰月修正
         this.monthIndex = date.lMonth
-        this.dayIndex = date.lDay - 1
+        this.day = date.lDay
       } else {
-        const date = calendar.lunar2solar(year, monthIndex, dayIndex + 1)
+        const date = calendar.lunar2solar(year, monthIndex, day)
         this.year = date.cYear
         this.monthIndex = date.cMonth - 1
-        this.dayIndex = date.cDay - 1
+        this.day = date.cDay
       }
     },
     /**
@@ -163,7 +171,7 @@ export default {
      */
     monthIndex () {
       const maxDayIndex = this.dateList.length - 1
-      const dayIndex = this.dayIndex
+      const dayIndex = this.day - 1
       if (dayIndex > maxDayIndex) this.dayIndex = maxDayIndex
     },
   },
@@ -173,7 +181,7 @@ export default {
       this.isLunar = this.date.isLunar
       this.year = this.date.year
       this.monthIndex = this.date.monthIndex
-      this.dayIndex = this.date.dayIndex
+      this.day = this.date.day
     },
     close () {
       this.visible = false
@@ -185,7 +193,7 @@ export default {
         isLunar: this.isLunar,
         year: this.year,
         monthIndex: this.monthIndex,
-        dayIndex: this.dayIndex,
+        day: this.day,
         leapMonth: calendar.leapMonth(this.year),
       }
       this.$emit('update:date', result)
