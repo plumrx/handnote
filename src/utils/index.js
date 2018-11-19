@@ -1,9 +1,11 @@
 import moment from 'moment'
+import calendar from './calendar'
 
 // noop
 export const noop = () => {}
 
-export default class Utils {
+export default {
+
   /**
    * 设置主题色
    *
@@ -12,13 +14,13 @@ export default class Utils {
    * @param {number} colorAngle 主题色 HUE 色相环角度
    * @memberof Utils
    */
-  static setThemeColor (colorAngle) {
+  setThemeColor (colorAngle) {
     const rootStyle = document.documentElement.style
     rootStyle.setProperty('--color-primary', `hsla(${colorAngle}, 100%, 66%, 1)`)
     rootStyle.setProperty('--color-secondary', `hsla(${colorAngle}, 100%, 80%, 1)`)
     rootStyle.setProperty('--color-tertiary', `hsla(${colorAngle}, 100%, 90%, 1)`)
     rootStyle.setProperty('--color-angle', colorAngle)
-  }
+  },
 
   /**
    * 获取某个时间的当日0时的时间戳
@@ -29,9 +31,40 @@ export default class Utils {
    * @returns {number} timestamp
    * @memberof Utils
    */
-  static getDayTimestamp (time) {
+  getDayTimestamp (time) {
     return +new Date(moment(time).format('YYYY-MM-DD'))
-  }
+  },
+
+  yearRange: [1900, 2100],
+
+  getYearList () {
+    return new Array(this.yearRange[1] - this.yearRange[0])
+      .fill()
+      .map((val, index) => this.yearRange[0] + index)
+  },
+
+  getSolarMonthList () {
+    return new Array(12).fill().map((val, index) => `${1 + index}月`)
+  },
+
+  getLunarMonthList (year) {
+    const leap = calendar.leapMonth(year)
+    const monthCN = calendar.nStr3
+    const list = monthCN.map((val, index) => calendar.toChinaMonth(index + 1))
+    if (leap > 0) list.splice(leap, 0, `润${monthCN[leap - 1]}月`)
+    return list
+  },
+
+  getSolarDateList (year, month) {
+    const days = calendar.solarDays(year, month)
+    return new Array(days).fill().map((val, index) => `${index + 1}日`)
+  },
+
+  getLunarDateList (year, month) {
+    const leap = calendar.leapMonth(year)
+    const monthDays = leap ? calendar.leapDays(year) : calendar.monthDays(year, month)
+    return new Array(monthDays).fill().map((val, index) => calendar.toChinaDay(index + 1))
+  },
 
   /**
    * 清除本地缓存
@@ -41,11 +74,11 @@ export default class Utils {
    * @static
    * @memberof Utils
    */
-  static clearAppCache (vm) {
+  clearAppCache (vm) {
     try {
       window.applicationCache.update()
     } catch (error) {
       vm.$message.success('已经是最新的了')
     }
-  }
+  },
 }

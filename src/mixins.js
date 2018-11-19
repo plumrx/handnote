@@ -1,7 +1,11 @@
 import moment from 'moment'
 import CommonHeader from '@/components/CommonHeader'
 
-moment.updateLocale('zh-cn', {})
+moment.updateLocale('zh-cn', {
+  relativeTime: {
+    future: '%s后',
+  },
+})
 
 export default {
   components: {
