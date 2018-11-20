@@ -5,6 +5,7 @@ import localStore from '@/utils/localStore'
 const state = {
   types: {
     birthday: '生日',
+    loveAnniversary: '恋爱纪念日',
   },
   list: localStore.getData('memorial_list') || [],
 }
@@ -27,7 +28,7 @@ const mutations = {
 
   [types.UPDATE_LIST] (state, list) {
     if (list instanceof Object) {
-      if (list.name) { list = [list] } else return
+      if (list.type) { list = [list] } else return
     }
     state.list = _.unionBy(state.list, list, item => `${item.type}-${item.name}`)
     localStore.setData('memorial_list', state.list)

@@ -31,9 +31,11 @@
 import _ from 'lodash'
 import FooterGuide from '@/components/FooterGuide'
 import EventCardBirthday from '@/components/EventCardBirthday'
+import EventCardLoveAnniversary from '@/components/EventCardLoveAnniversary'
 
 const componentsMap = {
   birthday: EventCardBirthday,
+  loveAnniversary: EventCardLoveAnniversary,
 }
 const groupMap = {
   today: '今天',

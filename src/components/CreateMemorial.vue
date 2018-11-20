@@ -9,21 +9,28 @@
       <label class="form-item">
         <span class="label">类型</span>
         <el-radio-group v-model="memorial.type">
-          <el-radio-button label="birthday">生日</el-radio-button>
-          <!-- <el-radio-button label="lover">恋爱纪念日</el-radio-button> -->
+          <el-radio-button
+            v-for="(label, type) in types"
+            :key="type"
+            :label="type"
+          > {{ label }} </el-radio-button>
         </el-radio-group>
       </label>
+
+      <el-collapse-transition>
+        <label v-if="['birthday'].includes(memorial.type)" class="form-item">
+          <span class="label">{{ nameLabel }}</span>
+          <el-input
+            ref="name"
+            v-model="memorial.name"
+            autofocus
+            clearable
+          />
+        </label>
+      </el-collapse-transition>
+
       <label class="form-item">
-        <span class="label">{{ nameLabel }}</span>
-        <el-input
-          ref="name"
-          v-model="memorial.name"
-          autofocus
-          clearable
-        />
-      </label>
-      <label class="form-item">
-        <span class="label">出生日期</span>
+        <span class="label">{{ dateLabel }}</span>
         <el-input
           prefix-icon="el-icon-date"
           :value="selectedDateText"
@@ -31,6 +38,7 @@
           @focus="openDateSelector"
         />
       </label>
+
       <button class="hidden" type="submit" />
     </form>
 
@@ -68,7 +76,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('memorial', []),
+    ...mapState('memorial', ['types']),
     year () {
       const { isLunar, year } = this.memorial.date
       if (!isLunar) return `${year}年`
@@ -102,6 +110,13 @@ export default {
         default: return '名称'
       }
     },
+    dateLabel () {
+      switch (this.memorial.type) {
+        case 'birthday': return '出生日期'
+        case 'loveAnniversary': return '相恋时间'
+        default: return '日期'
+      }
+    },
   },
   created () {
     this.$parent.$on('save', this.onSave)
@@ -127,7 +142,6 @@ export default {
       this.$refs.form.reset()
     },
     openDateSelector () {
-      console.log(1)
       this.$refs.date.open()
     },
   },
