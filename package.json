@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --port 3010",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "@tweenjs/tween.js": "^17.2.0",
@@ -26,8 +27,10 @@
   "devDependencies": {
     "@vue/cli-plugin-eslint": "^3.1.1",
     "@vue/cli-plugin-pwa": "^3.1.1",
+    "@vue/cli-plugin-unit-jest": "^3.1.1",
     "@vue/cli-service": "^3.1.1",
     "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
     "babel-eslint": "^10.0.1",
     "babel-plugin-component": "^1.1.1",
     "eslint": "^5.8.0",
@@ -36,6 +39,18 @@
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-element": "^1.0.0",
     "vue-template-compiler": "^2.5.17"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      [
+        "component",
+        {
+          "libraryName": "element-ui",
+          "styleLibraryName": "theme-chalk"
+        }
+      ]
+    ]
   },
   "postcss": {
     "plugins": {
@@ -46,16 +61,5 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 10"
-  ],
-  "babel": {
-    "plugins": [
-      [
-        "component",
-        {
-          "libraryName": "element-ui",
-          "styleLibraryName": "theme-chalk"
-        }
-      ]
-    ]
-  }
+  ]
 }
