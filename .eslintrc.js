@@ -13,5 +13,6 @@ module.exports = {
   rules: {
     'comma-dangle': [ 'error', 'always-multiline' ],
     'vue/max-attributes-per-line': [ 'error', { singleline: 3 } ],
+    'prefer-promise-reject-errors': [ 'off' ],
   },
 }
