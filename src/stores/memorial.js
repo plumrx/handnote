@@ -11,12 +11,10 @@ const state = {
 }
 
 const getters = {
-  list: state => state.list
-    .map(item => {
-      item.remaining = calendar.getRemainingDay(item.solar, item.date.isLunar)
-      return item
-    })
-    .sort((a, b) => a.remaining - b.remaining),
+  list: state => state.list.map(item => {
+    item.remaining = calendar.getRemainingDay(item.solar, item.date.isLunar)
+    return item
+  }),
 }
 
 export const types = {

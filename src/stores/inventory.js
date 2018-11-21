@@ -1,18 +1,16 @@
 import _ from 'lodash'
 import localStore from '@/utils/localStore'
 
-const initCategories = [
+const defaultCategories = [
   { parent: '', label: '日用品' },
-  { parent: '日用品', label: '纸巾' },
-  { parent: '日用品', label: '洗脸巾' },
-  { parent: '日用品', label: '姨妈巾' },
-  { parent: '日用品', label: '棉条' },
+  { parent: '日用品', label: '纸巾类' },
   { parent: '日用品', label: '洗衣液' },
   { parent: '日用品', label: '洗手液' },
   { parent: '日用品', label: '沐浴露' },
   { parent: '日用品', label: '洗发水' },
   { parent: '日用品', label: '牙膏牙刷' },
   { parent: '日用品', label: '鞋垫袜子' },
+  { parent: '日用品', label: '卫生巾' },
   { parent: '日用品', label: '安全套' },
   { parent: '', label: '彩妆' },
   { parent: '彩妆', label: '妆前乳' },
@@ -48,7 +46,7 @@ const initCategories = [
 ]
 
 const state = {
-  categories: localStore.getData('inventory_categories') || initCategories,
+  categories: localStore.getData('inventory_categories') || defaultCategories,
   list: localStore.getData('inventory_list') || [],
 }
 

@@ -8,22 +8,16 @@
         <blockquote class="quote"> 做你生命进程的小管家。 </blockquote>
       </el-card>
       <el-button class="item-btn" @click="randomColor">换个心情</el-button>
-      <el-button class="item-btn" @click="checkUpdate">检查更新</el-button>
     </el-form>
   </el-collapse-item>
 </template>
 
 <script>
 import { types } from '@/stores'
-import Utils from '@/utils'
 
 export default {
   name: 'SettingAbout',
   methods: {
-    checkUpdate () {
-      const vm = this
-      Utils.clearAppCache(vm)
-    },
     randomColor () {
       const colorAngle = (Math.random() * 360) << 0
       this.$store.commit(types.SAVE_THEME_COLOR, colorAngle)

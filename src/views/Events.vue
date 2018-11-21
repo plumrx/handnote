@@ -61,7 +61,7 @@ export default {
       ]
       return list.map(item => {
         return item
-      })
+      }).sort((a, b) => a.remaining - b.remaining)
     },
     groups () {
       const group = _.groupBy(this.list, item => {

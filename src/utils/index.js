@@ -79,19 +79,4 @@ export default {
     return moment(YMD)
   },
 
-  /**
-   * 清除本地缓存
-   * PWA 在静态文件更新时不会下载最新的文件，需要进行缓存更新
-   *
-   * @author mutoe <mutoe@foxmail.com>
-   * @static
-   * @memberof Utils
-   */
-  clearAppCache (vm) {
-    try {
-      window.applicationCache.update()
-    } catch (error) {
-      vm.$message.success('已经是最新的了')
-    }
-  },
 }
