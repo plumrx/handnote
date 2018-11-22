@@ -90,7 +90,7 @@ export default {
     weekday () {
       const { isLunar, year, monthIndex, day } = this.$data
       let date
-      if (isLunar) date = calendar.lunar2solar(year, monthIndex, day)
+      if (isLunar) date = calendar.lunar2solarByIndex(year, monthIndex, day)
       else date = calendar.solar2lunar(year, monthIndex + 1, day)
       return date.ncWeek
     },
@@ -133,7 +133,7 @@ export default {
       }
       // 如果是农历则转化为公历
       if (this.isLunar) {
-        const { cYear, cMonth, cDay } = calendar.lunar2solar(this.year, this.monthIndex, this.day)
+        const { cYear, cMonth, cDay } = calendar.lunar2solarByIndex(this.year, this.monthIndex, this.day)
         date = { year: cYear, month: cMonth, day: cDay }
       }
       date.month--
@@ -160,7 +160,7 @@ export default {
         this.monthIndex = date.lMonth
         this.day = date.lDay
       } else {
-        const date = calendar.lunar2solar(year, monthIndex, day)
+        const date = calendar.lunar2solarByIndex(year, monthIndex, day)
         this.year = date.cYear
         this.monthIndex = date.cMonth - 1
         this.day = date.cDay

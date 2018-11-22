@@ -130,7 +130,7 @@ export default {
       const { isLunar, year, monthIndex, day } = item.date
       // 保存事件发生时的公农历信息
       if (isLunar) {
-        item.solar = calendar.lunar2solar(year, monthIndex, day)
+        item.solar = calendar.lunar2solarByIndex(year, monthIndex, day)
       } else {
         item.solar = calendar.solar2lunar(year, monthIndex + 1, day)
       }

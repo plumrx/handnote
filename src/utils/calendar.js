@@ -401,11 +401,11 @@ export default {
     let nextYear = new Date().getFullYear()
     if (isLunar) {
       // 农历生日 先计算出今年对应的公历，如果已经过了今年日期则往后推一年重新计算
-      solar = this.lunar2solarByLeap(nextYear, solar.lMonth, solar.lDay, solar.isLeap)
+      solar = this.lunar2solar(nextYear, solar.lMonth, solar.lDay, solar.isLeap)
       // 判断是否已经过了今年生日
       const isAfter = moment().isAfter([nextYear, solar.cMonth - 1, solar.cDay], 'day')
       // 如果过了，往后推一年，并重新计算阳历
-      if (isAfter) solar = this.lunar2solarByLeap(++nextYear, solar.lMonth, solar.lDay, solar.isLeap)
+      if (isAfter) solar = this.lunar2solar(++nextYear, solar.lMonth, solar.lDay, solar.isLeap)
     } else {
       // 如果已经过了今年的生日，则往后推一年
       const isAfter = moment().isAfter([nextYear, solar.cMonth - 1, solar.cDay], 'day')
@@ -551,9 +551,9 @@ export default {
    * @param {number} d lunar day
    * @param {boolean} [isLeapMonth=false] lunar month is leap or not.[如果是农历闰月第四个参数赋值true即可]
    * @returns {object}
-   * @example calendar.lunar2solarByLeap(1987, 9, 10)
+   * @example calendar.lunar2solar(1987, 9, 10)
    */
-  lunar2solarByLeap (y, m, d, isLeapMonth = false) { // 参数区间1900.1.31~2100.12.1
+  lunar2solar (y, m, d, isLeapMonth = false) { // 参数区间1900.1.31~2100.12.1
     var leapMonth = this.leapMonth(y)
     if (isLeapMonth && (leapMonth !== m)) return -1 // 传参要求计算该闰月公历 但该年得出的闰月与传参的月份并不同
     if ((y === 2100 && m === 12 && d > 1) || (y === 1900 && m === 1 && d < 31)) return -1 // 超出了最大极限值
@@ -598,13 +598,13 @@ export default {
    * @param {number} d lunar day
    * @returns {Object}
    * @example
-   * calendar.lunar2solar(2020, 12, 10) // 腊月初十
-   * calendar.lunar2solar(2020, 5, 10) // 润四月初十
-   * calendar.lunar2solar(2020, 0, 1) // 正月初一
+   * calendar.lunar2solarByIndex(2020, 12, 10) // 腊月初十
+   * calendar.lunar2solarByIndex(2020, 5, 10) // 润四月初十
+   * calendar.lunar2solarByIndex(2020, 0, 1) // 正月初一
    */
-  lunar2solar (y, mIndex, d) {
+  lunar2solarByIndex (y, mIndex, d) {
     const leap = this.leapMonth(y)
-    if (!leap || mIndex < leap) return this.lunar2solarByLeap(y, mIndex + 1, d)
-    return this.lunar2solarByLeap(y, mIndex, d, leap === mIndex)
+    if (!leap || mIndex < leap) return this.lunar2solar(y, mIndex + 1, d)
+    return this.lunar2solar(y, mIndex, d, leap === mIndex)
   },
 }
