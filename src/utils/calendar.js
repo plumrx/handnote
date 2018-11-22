@@ -18,7 +18,7 @@ import Utils from './index'
 export default {
 
   /**
-   * 农历1900-2100的润大小信息表
+   * 农历1900-2100的闰大小信息表
    * @returns {number[]} hex array
    */
   lunarInfo: [0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2, // 1900-1909
@@ -525,7 +525,7 @@ export default {
       'lMonth': month,
       'lDay': day,
       'Animal': this.getAnimal(year),
-      'IMonthCn': (isLeap ? '润' : '') + this.toChinaMonth(month),
+      'IMonthCn': (isLeap ? '闰' : '') + this.toChinaMonth(month),
       'IDayCn': this.toChinaDay(day),
       'IYearCn': this.toChinaYear(year),
       'cYear': y,
@@ -599,7 +599,7 @@ export default {
    * @returns {Object}
    * @example
    * calendar.lunar2solarByIndex(2020, 12, 10) // 腊月初十
-   * calendar.lunar2solarByIndex(2020, 5, 10) // 润四月初十
+   * calendar.lunar2solarByIndex(2020, 5, 10) // 闰四月初十
    * calendar.lunar2solarByIndex(2020, 0, 1) // 正月初一
    */
   lunar2solarByIndex (y, mIndex, d) {

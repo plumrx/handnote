@@ -51,7 +51,7 @@ export default {
     const leap = calendar.leapMonth(year)
     const monthCN = calendar.nStr3
     const list = monthCN.map((val, index) => calendar.toChinaMonth(index + 1))
-    if (leap > 0) list.splice(leap, 0, `润${monthCN[leap - 1]}月`)
+    if (leap > 0) list.splice(leap, 0, `闰${monthCN[leap - 1]}月`)
     return list
   },
 

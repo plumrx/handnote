@@ -86,7 +86,7 @@ export default {
       const { monthIndex, isLunar, leapMonth } = this.memorial.date
       if (!isLunar) return `${monthIndex + 1}月`
       const months = [...calendar.nStr3]
-      if (leapMonth > 0) months.splice(leapMonth, 0, `润${months[leapMonth]}`)
+      if (leapMonth > 0) months.splice(leapMonth, 0, `闰${months[leapMonth]}`)
       return `${months[monthIndex]}月`
     },
     day () {
